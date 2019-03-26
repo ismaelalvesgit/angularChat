@@ -14,7 +14,7 @@ export class MessagemComponent implements OnInit {
   img:File
 
   form:FormGroup = new FormGroup({
-    "messagem": new FormControl("", [ Validators.required]),
+    "msg": new FormControl("", [ Validators.required]),
   })
 
   constructor(
@@ -32,7 +32,9 @@ export class MessagemComponent implements OnInit {
   sendMessage(){
     let user = new Login()
     let msg = new Messagem(this.form.value)
-    this.msgS.sendMenssage(msg)
+    this.msgS.sendMenssage(msg).then(()=>{
+      this.form.reset()
+    })
   }
 
 }

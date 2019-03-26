@@ -1,5 +1,5 @@
 .chat {
-    margin-top: 20px;
+  margin-top: 20px;
   width: 600px;
   float: left;
   background: #F2F5F8;
@@ -32,6 +32,11 @@
   font-size: 20px;
   margin-top: 12px;
 }
+
+.chat-history ul li{
+  list-style: none;
+}
+
 .chat .chat-history {
   padding: 30px 30px 20px;
   border-bottom: 2px solid white;

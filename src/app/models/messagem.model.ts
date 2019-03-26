@@ -2,6 +2,9 @@ export class Messagem {
     constructor(init?: Partial<Messagem>) {
         Object.assign(this, init);
     }
-    messagem:string
+    msg:string
+    dt:Date
     foto:string
+    nome:string
+    uid:string
 }
