@@ -1,0 +1,73 @@
+
+<h1>Bem vindo!</h1>
+
+<form [formGroup]="form" (ngSubmit)="login()">
+
+  <div class="field-wrap">
+    <label>
+      Email<span class="req">*</span>
+    </label>
+    <input type="email" 
+      formControlName="email"
+    />
+    <div *ngIf="form.get('email').invalid && (form.get('email').dirty || form.get('email').touched)"
+      class="alert alert-danger"
+      >
+      <div *ngIf="form.get('email').hasError('required')">
+        campo é Requerido
+      </div>
+      <div *ngIf="form.get('email').hasError('email')">
+        Email inválido
+      </div>
+    </div>
+  </div>
+  
+  <div class="field-wrap">
+    <label>
+      Password<span class="req">*</span>
+    </label>
+    <input type="password" 
+      autocomplete="off"
+      formControlName="senha"  
+    />
+    <div *ngIf="form.get('senha').invalid && (form.get('senha').dirty || form.get('senha').touched)"
+      class="alert alert-danger"
+      >
+      <div *ngIf="form.get('senha').hasError('required')">
+        campo é Requerido
+      </div>
+
+      <div *ngIf="form.get('senha').hasError('minlength')">
+        Minimo 6 caracteres
+      </div>
+    </div>
+  </div>
+  
+  <p  class="forgot">
+    <a href="#">Forgot Password?</a>
+  </p>
+  <button type="submit" class="button button-block">Log In</button>
+</form>
+<h1 class="text-center">
+  or
+</h1>
+<div class="row bg-info m-auto">
+  <button class="btn" (click)="loginFacebook()"><i class="fa fa-facebook-official fa-4x text-white mr-3"></i></button>
+  <h1 class="mt-3">Facebook</h1>
+</div>
+
+<div class="row bg-danger m-auto">
+  <button class="btn" (click)="loginGoogle()"><i class="fa fa-google-plus-official fa-4x text-white mr-3"></i></button>
+  <h1 class="mt-3">Google</h1>
+</div>
+
+<ngx-spinner
+  bdOpacity = 0.9
+  bdColor = "#333"
+  size = "medium"
+  color = "#fff"
+  type = "pacman"
+  fullScreen = "true"
+  >
+  <p style="color: white" > Loading... </p>
+</ngx-spinner>

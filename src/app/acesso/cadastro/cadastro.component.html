@@ -1,0 +1,75 @@
+
+<h1>Inscreva-se!!</h1>
+
+<form [formGroup]="form" (ngSubmit)="createUser()">
+  <div class="field-wrap">
+    <label>
+      Nome<span class="req">*</span>
+    </label>
+    <input type="text"
+      formControlName="nome"
+    />
+    <div *ngIf="form.get('nome').invalid && (form.get('nome').dirty || form.get('nome').touched)"
+      class="alert alert-danger"
+      >
+      <div *ngIf="form.get('nome').hasError('required')">
+        campo é Requerido
+      </div>
+    </div>
+  </div>
+  <div class="field-wrap">
+    <label>
+      Email<span class="req">*</span>
+    </label>
+    <input type="email" 
+      formControlName="email"
+    />
+    <div *ngIf="form.get('email').invalid && (form.get('email').dirty || form.get('email').touched)"
+      class="alert alert-danger"
+      >
+      <div *ngIf="form.get('email').hasError('required')">
+        campo é Requerido
+      </div>
+      <div *ngIf="form.get('email').hasError('email')">
+        Email inválido
+      </div>
+    </div>
+  </div>
+  <div class="field-wrap">
+    <label>
+      Password<span class="req">*</span>
+    </label>
+    <input type="password" 
+      autocomplete="off"
+      formControlName="senha"  
+    />
+    <div *ngIf="form.get('senha').invalid && (form.get('senha').dirty || form.get('senha').touched)"
+      class="alert alert-danger"
+      >
+      <div *ngIf="form.get('senha').hasError('required')">
+        campo é Requerido
+      </div>
+
+      <div *ngIf="form.get('senha').hasError('minlength')">
+        Minimo 6 caracteres
+      </div>
+    </div>
+  </div>
+  <div class="field-wrap">
+    <label>
+      Foto de Perfil
+    </label>
+    <input type="file" (change)="getImage($event)"/>
+  </div>
+  <button type="submit" class="button button-block">Cadastrar</button>
+</form>
+<ngx-spinner
+  bdOpacity = 0.9
+  bdColor = "#333"
+  size = "medium"
+  color = "#fff"
+  type = "pacman"
+  fullScreen = "true"
+  >
+  <p style="color: white" > Loading... </p>
+</ngx-spinner>
