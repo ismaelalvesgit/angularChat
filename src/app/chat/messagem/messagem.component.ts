@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { MessagemService } from 'src/app/services/messagem.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Messagem } from 'src/app/models/messagem.model';
@@ -10,8 +10,11 @@ import { Login } from 'src/app/models/login.model';
   styleUrls: ['./messagem.component.css']
 })
 export class MessagemComponent implements OnInit {
+ 
 
   img:File
+
+  @Input() keyChat:string
 
   form:FormGroup = new FormGroup({
     "msg": new FormControl("", [ Validators.required]),
@@ -32,7 +35,7 @@ export class MessagemComponent implements OnInit {
   sendMessage(){
     let user = new Login()
     let msg = new Messagem(this.form.value)
-    this.msgS.sendMenssage(msg).then(()=>{
+    this.msgS.sendMenssage(msg, this.keyChat).then(()=>{
       this.form.reset()
     })
   }

@@ -4,7 +4,9 @@ export class Login {
     }
     uid:string
     nome:string
-    foto:File
+    foto:File | string
     email:string
     senha:string
+    online:boolean
+    dtLogin:Date
 }

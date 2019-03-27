@@ -7,4 +7,5 @@ export class Messagem {
     foto:string
     nome:string
     uid:string
+    email:string
 }

@@ -1,41 +1,72 @@
-
 .people-list {
-    width: 260px;
-    float: left;
-  }
-  .people-list .search {
-    padding: 20px;
-  }
-  .people-list input {
-    border-radius: 3px;
-    border: none;
-    padding: 14px;
-    color: white;
-    background: #6A6C75;
-    width: 90%;
-    font-size: 14px;
-  }
-  .people-list .fa-search {
-    position: relative;
-    left: -25px;
-  }
-  .people-list ul {
-    padding: 20px;
-    height: 770px;
-  }
-  .people-list ul li {
-    padding-bottom: 20px;
-  }
-  .people-list img {
-    float: left;
-  }
-  .people-list .about {
-    float: left;
-    margin-top: 8px;
-  }
-  .people-list .about {
-    padding-left: 8px;
-  }
-  .people-list .status {
-    color: #92959E;
-  }
+  width: 100%;
+  background-color: #6A6C75;
+  height: 100%;
+}
+.people-list .search {
+  padding: 20px;
+}
+
+.people-list input {
+  border-radius: 3px;
+  border: none;
+  color: black;
+  background: #dcdde2;
+  width: 100%;
+  padding-left: 60px;
+  font-size: 14px;
+}
+.people-list .fa-search {
+  position: absolute;
+  top: 30px;
+  left: 60px;
+}
+
+.people-list ul {
+  padding: 20px;
+}
+.people-list ul li {
+  padding-bottom: 20px;
+  cursor: pointer;
+  list-style: none;
+}
+.people-list img {
+  float: left;
+}
+.people-list .about {
+  float: left;
+  margin-top: 8px;
+}
+.people-list .about {
+  padding-left: 8px;
+}
+.people-list .status {
+  color: #dcdde2;
+}
+.people-list .name{
+  color: #dcdde2;
+}
+.online, .offline, .me {
+  margin-right: 3px;
+  font-size: 10px;
+}
+.online {
+  color: #86BB71;
+}
+
+.offline {
+  color: #E38968;
+}
+
+.me {
+  color: #94C2ED;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}

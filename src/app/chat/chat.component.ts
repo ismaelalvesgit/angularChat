@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { MessagemService } from '../services/messagem.service';
-import { Messagem } from '../models/messagem.model';
-import { Observable } from 'rxjs';
 import { LoginService } from '../services/login.service';
-import { User } from 'firebase';
+import { Messagem } from '../models/messagem.model';
+import { Login } from '../models/login.model';
 
 @Component({
   selector: 'app-chat',
@@ -12,18 +11,27 @@ import { User } from 'firebase';
 })
 export class ChatComponent implements OnInit {
 
-  msg:Observable<any[]>
-  user:User
+  msg:Messagem[]= new Array<Messagem>()
+  
+  user:Login
+
+  @Input() keyChat:string
+  
   constructor(
     private messageS:MessagemService,
     private loginS:LoginService
     ) { }
-
-  ngOnInit() {
-    this.messageS.getData().subscribe((rs:any)=>{
-      this.msg = rs
-      this.user = this.loginS.currentUser()
+  
+  goToChat(key){
+    this.keyChat = key
+    this.messageS.getData(key).subscribe((rs:Messagem[])=>{
+      this.msg = rs   
+      console.log(this.msg) 
     })
+  }
+
+  ngOnInit(): void {
+    this.user = this.loginS.currentUser()
   }
 
 }

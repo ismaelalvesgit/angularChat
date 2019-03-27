@@ -1,5 +1,9 @@
-<div class="row justify-content-center">
-    <div class="chat">
+<div class="row no-gutters">
+    <div class="col-md-3">
+      <app-side (keyChat)="goToChat($event)"></app-side>
+    </div>
+    <div class="col-md-9">
+      <div class="chat">
         <div class="chat-header clearfix">
           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" />
           <div class="chat-about">
@@ -10,12 +14,11 @@
         </div> <!-- end chat-header -->
         
         <div class="chat-history">
-          <ul *ngFor="let menssage of msg">
+          <ul *ngFor="let menssage of msg" #scrollMe [scrollTop]="scrollMe.scrollHeight">
             <li [class]="user.email == menssage.email ? 'clearfix':''">
               <div [class]="user.email == menssage.email ? 'message-data align-right':'message-data' ">
-                <span class="message-data-time" >{{menssage.dt}}</span> &nbsp; &nbsp;
-                <span class="message-data-name" >{{menssage.nome}}</span> <i class="fa fa-circle me"></i>
-                
+                <span class="message-data-time" >{{menssage.dt.toDateString | date:'dd/MM/y HH:mm:ss'}}</span> &nbsp; &nbsp;
+                <span class="message-data-name" >{{menssage.nome}}</span> <i class="fa fa-circle me"></i>            
               </div>
               <div [class]="user.email == menssage.email ? 'message other-message float-right':'message my-message' ">
                 {{menssage.msg}}
@@ -36,6 +39,7 @@
           
         </div> <!-- end chat-history -->
         
-        <app-messagem></app-messagem>  
+        <app-messagem [keyChat]="keyChat"></app-messagem>  
       </div> <!-- end chat -->
+    </div>
 </div>    

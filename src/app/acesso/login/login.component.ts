@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
     .then((s)=>{
       this.spinnerS.hide()
       this.toastrS.success("Sucesso!!!", `login ${login.email}`)
-      this.router.navigate(["/chat"])
     })
     .catch((e:Error)=>{
       this.spinnerS.hide()
@@ -49,7 +48,6 @@ export class LoginComponent implements OnInit {
     .then((s)=>{
       this.spinnerS.hide()
       this.toastrS.success("Sucesso!!!")
-      this.router.navigate(["/chat"])
     })
     .catch((e:Error)=>{
       this.spinnerS.hide()

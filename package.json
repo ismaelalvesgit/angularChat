@@ -30,7 +30,8 @@
     "ngx-spinner": "^7.0.0",
     "ngx-toastr": "^10.0.2",
     "popper.js": "^1.14.7",
-    "rxjs": "^6.2.2",
+    "rxjs": "^6.4.0",
+    "rxjs-compat": "^6.4.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
