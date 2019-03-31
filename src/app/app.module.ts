@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule } from "@angular/forms";
+
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -19,6 +21,9 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { LoginService } from './services/login.service';
 import { MessagemService } from './services/messagem.service';
 
+//pipe
+import { SearchPipe } from './pipe/search.pipe';
+
 //Components
 import { AppComponent } from './app.component';
 import { AcessoComponent } from './acesso/acesso.component';
@@ -29,9 +34,11 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { LoginComponent } from './acesso/login/login.component';
 import { CadastroComponent } from './acesso/cadastro/cadastro.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
+    SearchPipe,
     AcessoComponent,
     ChatComponent,
     MessagemComponent,
@@ -47,6 +54,7 @@ import { CadastroComponent } from './acesso/cadastro/cadastro.component';
     ToastrModule.forRoot(), 
     NgxSpinnerModule,// ToastrModule addd
     ReactiveFormsModule,//Formulários reativos do angular
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,

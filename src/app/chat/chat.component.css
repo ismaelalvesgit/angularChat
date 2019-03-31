@@ -1,6 +1,6 @@
 .chat {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: #F2F5F8;
   color: #434651;
 }
@@ -101,7 +101,7 @@
   clear: both;
   height: 0;
 }
-
 .me {
   color: #94C2ED;
 }
+

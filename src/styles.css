@@ -171,3 +171,9 @@
   .forgot a:hover {
     color: #179b77;
   }
+  .img-circle{
+    border-radius: 1px #434651;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+  }

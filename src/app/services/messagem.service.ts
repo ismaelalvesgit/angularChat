@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Messagem } from '../models/messagem.model';
 import { LoginService } from './login.service';
+import { Login } from '../models/login.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,13 +22,15 @@ export class MessagemService {
     return this.af.collection("msg").doc(key).collection("menssagens", ref=> ref.orderBy("dt")).valueChanges()
   }
 
-  async sendMenssage(msg:Messagem, key:string){
+  async sendMenssage(msg:Messagem, key:string, login:Login){
+    console.log(login)
+    console.log(key)
     return this.af.collection('msg').doc(key).collection("menssagens").add({
       msg:msg.msg,
       dt: new Date(),
-      nome: this.loginS.currentUser().nome,
-      uid: this.loginS.currentUser().uid,
-      email:this.loginS.currentUser().email
+      nome: login.nome,
+      uid: login.uid,
+      email: login.email
     })
   }
 

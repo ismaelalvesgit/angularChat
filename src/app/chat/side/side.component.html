@@ -1,18 +1,18 @@
 <div class="people-list">
   <div class="search">
-    <input type="text" placeholder="search" />
+    <input type="text" [(ngModel)]="search" placeholder="search" />
     <i class="fa fa-search"></i>
   </div>
-  <ul *ngFor="let user of users" class="list">
+  <ul *ngFor="let user of users | search: search" class="list">
     <li (click)="getChat(user)" class="clearfix">
-      <img class="img-rounded" height="60" width="60" [src]="user.foto" alt="{{user.foto}}" />
+      <img class="img-circle" height="60" width="60" [src]="user.foto" alt="{{user.foto}}" />
       <div class="about">
         <div class="name">{{user.nome}}</div>
         <div *ngIf="user.online" class="status">
            <i class="fa fa-circle online"></i> online
         </div>
         <div *ngIf="user.online == false" class="status">
-          <i class="fa fa-circle offline"></i> {{user.dtLogin.toDateString | date:'dd/MM/y HH:mm:ss'}}
+          <i class="fa fa-circle offline"></i> offline {{user.dtLogin.getDate |date:'yyyy/MM/dd h:mm:ss a'}}
        </div>
       </div>
     </li>

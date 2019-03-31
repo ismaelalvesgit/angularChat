@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MessagemService } from 'src/app/services/messagem.service';
 import { Login } from 'src/app/models/login.model';
 import { LoginService } from 'src/app/services/login.service';
-import { User } from 'firebase';
 
 @Component({
   selector: 'app-side',
@@ -14,23 +13,27 @@ export class SideComponent implements OnInit {
   users:Login[] = new Array<Login>()
   currentUser:Login
   @Output() keyChat:EventEmitter<string> = new EventEmitter();
-  
+  @Output() partner:EventEmitter<Login> = new EventEmitter();
   constructor(
     private messageS:MessagemService,
-    private loginS:LoginService
+    private loginS:LoginService,
   ) { }
 
   ngOnInit() {
-    this.messageS.getUsers().subscribe((rs:Login[])=>{
-      this.users = rs
-      //retirar seu usuario da lista de usuários
-      for(let i= 0; i < this.users.length; i++){
-        if(this.loginS.currentUser().email == this.users[i].email){
-          this.users.splice(i, 1)
-        }
-      }
-      console.log(this.loginS.currentUser().email)
-      this.currentUser = this.loginS.currentUser()
+    this.loginS.isLoggedIn().onAuthStateChanged((u)=>{
+      this.loginS.currentUser(u.uid).subscribe((rs)=>{
+        this.currentUser = rs[0]
+        this.messageS.getUsers().subscribe((rs:Login[])=>{
+          //retirar da lista de usuarios o usuario logado
+          for(let i = 0; i < rs.length; i++){
+            if(this.currentUser.email == rs[i].email){
+              rs.splice(i, 1)
+              this.users = rs
+              console.log(this.users)
+            }
+          }
+        })
+      })
     })
   }
 
@@ -39,6 +42,7 @@ export class SideComponent implements OnInit {
     keyChat = this.messageS.getRoom(this.currentUser.uid, chat.uid)
     console.log("side",keyChat)
     this.keyChat.emit(keyChat)
+    this.partner.emit(chat)
   }
 
 }

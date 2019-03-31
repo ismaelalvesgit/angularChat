@@ -5,12 +5,11 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
 import * as firebase from 'firebase';
 import { Login } from '../models/login.model';
-import "rxjs-compat/operator/map";
-import { map } from 'rxjs-compat/operator/map';
+import { first, tap, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+
+@Injectable()
 export class LoginService {
   
   IdToken:string
@@ -103,25 +102,28 @@ export class LoginService {
   }
 
   //metodo logout
-  async logout(){
-    this.af.collection('users').doc(this.currentUser().uid).update({
-      online:false,
-      dtLogin:new Date()
-    })
+  async logout(uid:string){
     return this.afa.auth.signOut().then((user)=>{
+      this.af.collection('users').doc(uid).update({
+        online:false,
+        dtLogin:new Date()
+      })
       localStorage.clear()
       this.router.navigate(['/'])
     })
+    
+  }
+
+  isLoggedIn() {
+    return this.afa.auth
   }
 
   //metodo que pega usuario autenticado
-  currentUser():Login{  
-    let login:Login = new Login()
-     this.af.collection("users", ref=> ref.where("uid", "==", this.afa.auth.currentUser.uid)).snapshotChanges().subscribe((rs)=>{
-      rs.map((map)=>{
-        login = map.payload.doc.data() as Login
+  currentUser(uid:string){  
+    return this.af.collection("users", ref=> ref.where("uid", "==", uid)).snapshotChanges().pipe(map(e =>{
+      return e.map(a =>{
+        return a.payload.doc.data() as Login
       })
-    })
-    return login
+    }))
   }
 }

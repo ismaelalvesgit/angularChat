@@ -1,26 +1,40 @@
+<nav *ngIf="currentUser"  class="navbar navbar-expand-lg navbar-light bg-light">
+  <img class="navbar-brand img-circle" [src]="currentUser.foto">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <p class="nav-link">Bem-vindo!!! {{currentUser.nome}}</p>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()">Sair</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 <div class="row no-gutters">
     <div class="col-md-3">
-      <app-side (keyChat)="goToChat($event)"></app-side>
+      <app-side (keyChat)="goToChat($event)" (partner)="getPartner($event)"></app-side>
     </div>
-    <div class="col-md-9">
+    <div  class="col-md-9">
       <div class="chat">
-        <div class="chat-header clearfix">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" />
+        <div  *ngIf="partner" class="chat-header clearfix">
+          <img class="img-circle" [src]="partner.foto" alt="{{partner.foto}}" />
           <div class="chat-about">
-            <div class="chat-with">Chat with Vincent Porter</div>
-            <div class="chat-num-messages">already 1 902 messages</div>
+            <div class="chat-with">{{partner.nome}}</div>
+            <!--<div class="chat-num-messages">already 1 902 messages</div>-->
           </div>
-          <i class="fa fa-star"></i>
+          <!--<i class="fa fa-star"></i>-->
         </div> <!-- end chat-header -->
         
         <div class="chat-history">
           <ul *ngFor="let menssage of msg" #scrollMe [scrollTop]="scrollMe.scrollHeight">
-            <li [class]="user.email == menssage.email ? 'clearfix':''">
-              <div [class]="user.email == menssage.email ? 'message-data align-right':'message-data' ">
-                <span class="message-data-time" >{{menssage.dt.toDateString | date:'dd/MM/y HH:mm:ss'}}</span> &nbsp; &nbsp;
-                <span class="message-data-name" >{{menssage.nome}}</span> <i class="fa fa-circle me"></i>            
+            <li [class]="currentUser.email == menssage.email ? 'clearfix':''">
+              <div [class]="currentUser.email == menssage.email ? 'message-data align-right':'message-data' ">
+                <span class="message-data-time" >{{menssage.dt.toDateString | date:'dd/MM/y HH:mm:ss'}}</span> 
+                <span class="message-data-name" >{{menssage.nome}}</span> 
+                <i class="fa fa-circle ml-1 me"></i>            
               </div>
-              <div [class]="user.email == menssage.email ? 'message other-message float-right':'message my-message' ">
+              <div [class]="currentUser.email == menssage.email ? 'message other-message float-right':'message my-message' ">
                 {{menssage.msg}}
               </div>
             </li>

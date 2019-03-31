@@ -1,7 +1,8 @@
 .people-list {
   width: 100%;
   background-color: #6A6C75;
-  height: 100%;
+  height: 100vh;
+  overflow-y: scroll;
 }
 .people-list .search {
   padding: 20px;
