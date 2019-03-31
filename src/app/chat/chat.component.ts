@@ -5,6 +5,7 @@ import { Messagem } from '../models/messagem.model';
 import { Usuario } from '../models/usuario.model';
 import { ToastrService } from 'ngx-toastr';
 
+//@Author Ismael Alves
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',

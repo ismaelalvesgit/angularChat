@@ -3,11 +3,13 @@ import { MessagemService } from 'src/app/services/messagem.service';
 import { Usuario } from 'src/app/models/usuario.model';
 import { LoginService } from 'src/app/services/login.service';
 
+//@Author Ismael Alves
 @Component({
   selector: 'app-side',
   templateUrl: './side.component.html',
   styleUrls: ['./side.component.css']
 })
+
 export class SideComponent implements OnInit {
 
   users:Usuario[] = new Array<Usuario>()

@@ -7,8 +7,7 @@ import * as firebase from 'firebase';
 import { Usuario } from '../models/usuario.model';
 import { map } from 'rxjs/operators';
 
-
-
+//@Author Ismael Alves
 @Injectable()
 export class LoginService {
   

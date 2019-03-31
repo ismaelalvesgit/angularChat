@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Messagem } from '../models/messagem.model';
 import { Usuario } from '../models/usuario.model';
 
+//@Author Ismael Alves
 @Injectable({
   providedIn: 'root'
 })

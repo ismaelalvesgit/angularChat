@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Usuario } from '../models/usuario.model';
 
+//@Author Ismael Alves
 @Pipe({
   name: 'search'
 })

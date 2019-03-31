@@ -5,7 +5,7 @@ import { Messagem } from 'src/app/models/messagem.model';
 import { LoginService } from 'src/app/services/login.service';
 import { Usuario } from 'src/app/models/usuario.model';
 
-
+//@Author Ismael Alves
 @Component({
   selector: 'app-messagem',
   templateUrl: './messagem.component.html',

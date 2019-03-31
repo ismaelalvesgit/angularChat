@@ -1,3 +1,5 @@
+//@Author Ismael Alves
+
 //class que reperesenda dados do usuario no banco
 export class Usuario {
     constructor(init?: Partial<Usuario>) {

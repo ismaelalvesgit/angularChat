@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TabsetComponent } from 'ngx-bootstrap';
 
+//@Author Ismael Alves
 @Component({
   selector: 'app-acesso',
   templateUrl: './acesso.component.html',
   styleUrls: ['./acesso.component.css']
 })
+
 export class AcessoComponent implements OnInit {
 
   //pegar tabs
