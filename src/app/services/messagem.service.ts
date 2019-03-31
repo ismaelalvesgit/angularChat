@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Messagem } from '../models/messagem.model';
-import { LoginService } from './login.service';
-import { Login } from '../models/login.model';
+import { Usuario } from '../models/usuario.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +10,20 @@ export class MessagemService {
 
   constructor(
     private af:AngularFirestore,
-    private loginS:LoginService
   ) { }
 
+  //pegar os usurários cadastrados
   getUsers(){
     return this.af.collection('users').valueChanges()
   }
 
+  //pegar as messagens do chat
   getData(key:string){
     return this.af.collection("msg").doc(key).collection("menssagens", ref=> ref.orderBy("dt")).valueChanges()
   }
 
-  async sendMenssage(msg:Messagem, key:string, login:Login){
+  //envia a menssagem
+  async sendMenssage(msg:Messagem, key:string, login:Usuario){
     console.log(login)
     console.log(key)
     return this.af.collection('msg').doc(key).collection("menssagens").add({
@@ -34,6 +35,7 @@ export class MessagemService {
     })
   }
 
+  //pega a sala de bate-papo
   getRoom(uid1:string, uid2:string):string{
     let keyRoom:string;
     if(uid1 < uid2 ){

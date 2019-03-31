@@ -1,10 +1,10 @@
 <div class="form">
-  <tabset type="pills" >
-    <tab heading="login" >
+  <tabset type="pills" #staticTabs>
+    <tab heading="login" customClass="tab">
       <app-login></app-login>
     </tab>
-    <tab heading="Cadastrar">
-      <app-cadastro></app-cadastro>
+    <tab heading="Cadastrar" customClass="tab">
+      <app-cadastro (loginTab)="tabLogin($event)"></app-cadastro>
     </tab>  
   </tabset>
 </div> <!-- /form -->

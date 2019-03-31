@@ -9,7 +9,8 @@ export class AuthGuardService implements CanActivate {
   constructor(
     private loginS:LoginService
   ){ }
-
+  
+  //protege a rota de chat
   canActivate(){
     return this.loginS.autenticarLogin()
   }

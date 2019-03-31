@@ -1,5 +1,6 @@
-export class Login {
-    constructor(init?: Partial<Login>) {
+//class que reperesenda dados do usuario no banco
+export class Usuario {
+    constructor(init?: Partial<Usuario>) {
         Object.assign(this, init);
     }
     uid:string

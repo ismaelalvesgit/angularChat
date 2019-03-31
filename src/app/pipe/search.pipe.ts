@@ -1,12 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Login } from '../models/login.model';
+import { Usuario } from '../models/usuario.model';
 
 @Pipe({
   name: 'search'
 })
 
 export class SearchPipe implements PipeTransform {
-  transform(customers: Login[], args: string): any {   
+
+  //faz a pesquisa pelo nome do usuário
+  transform(customers: Usuario[], args: string): any {   
     if(args){
       return customers.filter(customer => customer.nome.toLowerCase().indexOf(args.toLowerCase()) !== -1);
     }else{

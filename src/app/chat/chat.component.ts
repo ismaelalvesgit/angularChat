@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MessagemService } from '../services/messagem.service';
 import { LoginService } from '../services/login.service';
 import { Messagem } from '../models/messagem.model';
-import { Login } from '../models/login.model';
+import { Usuario } from '../models/usuario.model';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -12,12 +12,16 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ChatComponent implements OnInit {
 
+  //arrat de messagens
   msg:Messagem[]= new Array<Messagem>()
   
-  currentUser:Login = new Login()
+  //usuario autenticado
+  currentUser:Usuario = new Usuario()
+  
+  //usuario do bate-papo
+  partner:Usuario
 
-  partner:Login
-
+  //manda chave do chat pra componet messagem
   @Input() keyChat:string
   
   constructor(
@@ -26,16 +30,17 @@ export class ChatComponent implements OnInit {
     private toastrS:ToastrService
   ) { }
   
+  //metodo do ciclo de vida do angular ao iniciar o component
   ngOnInit() {
     //pegar usuario autenticado
     this.loginS.isLoggedIn().onAuthStateChanged(u=>{
       this.loginS.currentUser(u.uid).subscribe(rs=>{
         this.currentUser = rs[0]
-        console.log(this.currentUser)
       })
     })
   }
 
+  //recebe a chave do componet side
   goToChat(key){
     this.keyChat = key
     this.messageS.getData(key).subscribe((rs:Messagem[])=>{
@@ -43,17 +48,19 @@ export class ChatComponent implements OnInit {
     })
   }
 
+  //recebe usuario bate-papo
   getPartner(partner){
     this.partner = partner
   } 
 
+  //metodo logout
   logout(){
     this.loginS.logout(this.currentUser.uid)
     .then(()=>{
       this.toastrS.success("Logout feito com sucesso!!!!")
-    })
+    })//metodo retornou um sucesso
     .catch((e:Error)=>{
       this.toastrS.error(`${e.message}`)
-    })
+    })//metodo retornou um erro
   }
 }

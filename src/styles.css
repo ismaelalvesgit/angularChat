@@ -1,14 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-*, *:before, *:after {
-    box-sizing: border-box;
-  }
-  
-  html {
-    overflow-y: scroll;
-  }
-  
   body {
-    background: #c1bdba;
+    background: linear-gradient(135deg,  #EA5C54  0%,#bb6dec 100%); 
     font-family: 'Titillium Web', sans-serif;
   }
   
@@ -48,10 +40,6 @@
     color: #ffffff;
   }
 
-  tab>active  {
-    background: #1ab188;
-    color: #ffffff;
-  }
   
   .tab-content > div:last-child {
     display: none;
@@ -65,10 +53,6 @@
   }
   
   label {
-    position: absolute;
-    -webkit-transform: translateY(6px);
-            transform: translateY(6px);
-    left: 13px;
     color: rgba(255, 255, 255, 0.5);
     transition: all 0.25s ease;
     pointer-events: none;
@@ -78,13 +62,7 @@
     margin: 2px;
     color: #1ab188;
   }
-  
-  label.active {
-    -webkit-transform: translateY(50px);
-    transform: translateY(50px);
-    left: 2px;
-    font-size: 14px;
-  }
+
   label.active .req {
     opacity: 0;
   }
@@ -118,7 +96,7 @@
   
   .field-wrap {
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
   
   .top-row:after {
@@ -149,8 +127,8 @@
     transition: all 0.5s ease;
     -webkit-appearance: none;
   }
-  .button:hover, .button:focus {
-    background: #179b77;
+  .button:disabled{
+    background: #1e8167;
   }
   
   .button-block {
@@ -176,4 +154,12 @@
     height: 60px;
     width: 60px;
     border-radius: 50%;
+  }
+
+  .tab > a{
+    color: #1ab188;  
+  }
+  .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    color: #fff;
+    background-color: #1ab188;  
   }

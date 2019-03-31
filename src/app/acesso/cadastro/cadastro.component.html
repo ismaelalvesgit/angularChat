@@ -57,11 +57,20 @@
   </div>
   <div class="field-wrap">
     <label>
-      Foto de Perfil
+      Foto de Perfil<span class="req">*</span>
     </label>
-    <input type="file" (change)="getImage($event)"/>
+    <input type="file" 
+    formControlName="foto"  
+    (change)="getImage($event)"/>
+    <div *ngIf="form.get('foto').invalid && (form.get('foto').dirty || form.get('foto').touched)"
+      class="alert alert-danger"
+      >
+      <div *ngIf="form.get('foto').hasError('required')">
+        campo é Requerido
+      </div>
+    </div>
   </div>
-  <button type="submit" class="button button-block">Cadastrar</button>
+  <button type="submit" [disabled]="!form.valid" class="button button-block" >Cadastrar</button>
 </form>
 <ngx-spinner
   bdOpacity = 0.9

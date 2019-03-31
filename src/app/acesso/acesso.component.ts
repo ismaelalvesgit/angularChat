@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { TabsetComponent } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-acesso',
@@ -7,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AcessoComponent implements OnInit {
 
+  //pegar tabs
+  @ViewChild('staticTabs') staticTabs: TabsetComponent;
+
   constructor() { }
 
   ngOnInit() {
   }
-
-
+  
+  //alterar tabs
+  tabLogin(id){
+    this.staticTabs.tabs[id].active = true
+  }
 }
