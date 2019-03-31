@@ -13,38 +13,6 @@
     box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
   }
   
-  .tab-group {
-    padding: 0;
-    margin: 0 0 40px 0;
-  }
-  .tab-group:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  .tab-group > a {
-    display: block;
-    text-decoration: none;
-    padding: 15px;
-    background: rgba(160, 179, 176, 0.25);
-    color: #a0b3b0;
-    font-size: 20px;
-    float: left;
-    width: 50%;
-    text-align: center;
-    cursor: pointer;
-    transition: .5s ease;
-  }
-  .tab-group > a:hover {
-    background: #179b77;
-    color: #ffffff;
-  }
-
-  
-  .tab-content > div:last-child {
-    display: none;
-  }
-  
   h1 {
     text-align: center;
     color: #ffffff;
